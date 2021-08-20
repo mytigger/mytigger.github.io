@@ -464,77 +464,80 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h1><h3 id="Ajax介绍"><a href="#Ajax介绍" class="headerlink" title="Ajax介绍"></a>Ajax介绍</h3><p>使用 XMLHttpRequest  (XHR)对象可以与服务器交互, 也就是发送ajax 请求</p>
-<p>前端可以获取到数据，而无需让整个的页面刷新。</p>
-<p>这使得Web 页面可以只更新页面的局部，而不影响用户的操作。</p>
-<p>优点：1、可以无需刷新页面而与服务器端进行通信</p>
-<p>​            2、允许你根据用户事件来更新部分页面内容</p>
-<p>缺点：1、没有浏览历史，无法回退</p>
-<p>​            2、存在跨域问题（同源）</p>
-<p>​            3、SEO不友好</p>
-<h3 id="常见响应码："><a href="#常见响应码：" class="headerlink" title="常见响应码："></a>常见响应码：</h3><p>200 OK 请求成功，一般用于GET、POST请求</p>
-<p>201 Created 已创建。成功请求并创建了新的资源</p>
-<p>401 Unauthorized 未授权/请求要求用户的身份认证</p>
-<p>404 Not Found  服务器无法根据客户端的请求找到资源</p>
-<p>500 Internal Server Error 服务器内部错误，无法完成请求</p>
-<h3 id="请求类型："><a href="#请求类型：" class="headerlink" title="请求类型："></a>请求类型：</h3><p>1、<code>GET</code>: 从服务器端<strong>读取</strong>数据（查）</p>
-<p>2、<code>POST</code>: 向服务器端<strong>添加</strong>新数据 （增）</p>
-<p>3、<code>PUT</code>: <strong>更新</strong>服务器端已经数据 （改）</p>
-<p>4、<code>DELETE</code>: <strong>删除</strong>服务器端数据 （删）</p>
-<h3 id="API分类"><a href="#API分类" class="headerlink" title="API分类"></a>API分类</h3><p>REST API: restful （Representational State Transfer (资源)表现层状态转化）<br>1、 发送请求进行CRUD 哪个操作由请求方式来决定<br>2、同一个请求路径可以进行多个操作<br>3、请求方式会用到GET/POST/PUT/DELETE<br>非REST API: restless<br>1、 请求方式不决定请求的CRUD 操作<br>2、一个请求路径只对应一个操作<br>3、 一般只有GET/POST</p>
-<h3 id="常用处理办法"><a href="#常用处理办法" class="headerlink" title="常用处理办法"></a>常用处理办法</h3><p>1、设置超时时间，网络异常</p>
-<p>xhr.timeout = 2000</p>
-<p>​    xhr.ontimeout = <strong>function</strong>(){</p>
-<p>​        alert(‘网络异常，重新加载网络’)</p>
-<p>​    }</p>
-<p>2、取消请求、重复请求</p>
-<p> <strong>let</strong> x = null</p>
-<p>​    <strong>let</strong> isSending = false <em>//是否正在发送ajax请求</em> </p>
-<p>​    <strong>const</strong> btns = document.querySelectorAll(‘button’)</p>
-<p>​    btns[0].onclick = <strong>function</strong>(){</p>
-<p>​        <em>//判断请求表示变量</em></p>
-<p>​        if(isSending){</p>
-<p>​            x.abort()</p>
-<p>​        }</p>
-<p>​        x = new XMLHttpRequest()</p>
-<p>​        isSending = true </p>
-<p>​        x.open(‘GET’,’<a target="_blank" rel="noopener" href="http://127.0.0.1:3000/delay&#39;">http://127.0.0.1:3000/delay&#39;</a>)</p>
-<p>​        x.send()</p>
-<p>​        x.onreadystatechange = <strong>function</strong>(){</p>
-<p>​            if(x.readyState === 4 ){</p>
-<p>​                isSending = false</p>
-<p>​            }</p>
-<p>​        }</p>
-<p>​    }</p>
-<p>3、解决IE缓存问题</p>
-<p>IE浏览器存在缓存机制，只会发送第一次请求，剩下的请求不会再发送给浏览器，而是直接加载缓存中的数据。</p>
-<p>一般会在url的后面加上时间戳函数来处理。</p>
-<p>xhr.open(method,url + ‘?t’ + Date.now())</p>
-<p>4、跨域 同源策略</p>
-<p>同源：协议、域名、端口完全相同</p>
-<p>跨域：违背同源策略就是跨域</p>
-<p>1、利用JSONP解决GET请求。利用标签的开放策略(img、link、script、iframe)实现跨域请求数据务器端的配合。当正常地请求一个JSON数据的时候，服务端返回的是一串 JSON类型的数据，而使用 JSONP模式来请求数据的时候服务端返回的是一段可执行的 JS代码。因为jsonp 跨域的原理就是用的动态加载 script的src ，所以我们只能把参数通过 url的方式传递,所以JSONP的 type类型只能是get ！</p>
-<p>前端请求：</p>
-<p>server请求</p>
-<p>2、response 添加 header 表示支持所有网站访问，也可以额外配置相应网站</p>
-<p>resp.setHeader(“Access-Control-Allow-Origin”, “*”);</p>
-<h3 id="核心步骤"><a href="#核心步骤" class="headerlink" title="核心步骤"></a>核心步骤</h3><p>1、创建实列对象</p>
-<p><strong>const</strong> xhr = new XMLHttpRequest()</p>
-<p>2、设置请求类型和请求地址</p>
-<p>xhr.open(menthod,url)</p>
-<p>3、发送请求</p>
-<p>xhr.send()</p>
-<p>4、事件绑定</p>
-<p>xhr.onreadystatechange = <strong>function</strong> (){</p>
-<p>5、判断状态处理服务器返回结果</p>
-<p>​    if(xhr.readyState === 4 ){</p>
-<p>​        if(xhr.status &gt;= 200 &amp;&amp; xhr.status &lt;300){</p>
-<p>​            return xhr.response</p>
-<p>​        }else{</p>
-<p>​            xhr.status</p>
-<p>​        }</p>
-<p>​    }</p>
-<p>}</p>
+                <h1 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h1><h3 id="Axios-特点"><a href="#Axios-特点" class="headerlink" title="Axios 特点"></a>Axios 特点</h3><p>1、基于xhr + Promise 异步ajax请求库</p>
+<p>2、浏览器端、node 端都可以使用</p>
+<p>3、支持请求、响应拦截器</p>
+<p>4、支持请求取消</p>
+<p>5、请求、响应数据转换</p>
+<p>6、批量发送多个请求</p>
+<h3 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h3><pre><code>axios(config): 通用/最本质的发任意类型请求的方式
+axios(url[, config]): 可以只指定url 发get 请求
+axios.request(config): 等同于axios(config)
+axios.get(url[, config]): 发get 请求
+axios.delete(url[, config]): 发delete 请求
+axios.post(url[, data, config]): 发post 请求
+axios.put(url[, data, config]): 发put 请求
+axios.defaults.xxx: 请求的默认全局配置（method\baseURL\params\timeout…）
+axios.interceptors.request.use(): 添加请求拦截器
+axios.interceptors.response.use(): 添加响应拦截器
+axios.create([config]): 创建一个新的axios()
+axios.Cancel(): 用于创建取消请求的错误对象
+axios.CancelToken(): 用于创建取消请求的 token 对象
+axios.isCancel(): 是否是一个取消请求的错误
+axios.all(promises): 用于批量执行多个异步请求
+axios.spread(): 用来指定接收所有成功数据的回调函数的方法
+</code></pre>
+<h3 id="安装json-server"><a href="#安装json-server" class="headerlink" title="安装json-server"></a>安装json-server</h3><p>Install JSON Server</p>
+<pre><code>npm install -g json-server
+</code></pre>
+<p>Create a <code>db.json</code> file with some data</p>
+<pre><code>&#123;
+  &quot;posts&quot;: [
+    &#123; &quot;id&quot;: 1, &quot;title&quot;: &quot;json-server&quot;, &quot;author&quot;: &quot;typicode&quot; &#125;
+  ],
+  &quot;comments&quot;: [
+    &#123; &quot;id&quot;: 1, &quot;body&quot;: &quot;some comment&quot;, &quot;postId&quot;: 1 &#125;
+  ],
+  &quot;profile&quot;: &#123; &quot;name&quot;: &quot;typicode&quot; &#125;
+&#125;
+</code></pre>
+<p>Start JSON Server</p>
+<pre><code>json-server --watch db.json
+</code></pre>
+<h3 id="Axios配置"><a href="#Axios配置" class="headerlink" title="Axios配置"></a>Axios配置</h3><pre><code>axios(&#123;
+    url:        //请求地址
+    method:        //请求类型
+    params:        //get delete 请求query参数
+    data:        //post/put 请求体参数
+&#125;).then(vlaue=&gt;&#123;
+    console.log(value)
+&#125;)
+</code></pre>
+<h4 id="默认配置"><a href="#默认配置" class="headerlink" title="默认配置"></a>默认配置</h4><pre><code>axios.defaults.method = &#39;get&#39;  //请求类似默认get
+axios.defaults.baseURL = &#39;http://127.0.0.1:3000&#39; //设置基础URL
+</code></pre>
+<h4 id="创建实列对象"><a href="#创建实列对象" class="headerlink" title="创建实列对象"></a>创建实列对象</h4><pre><code>const name = axios.create(&#123;&#125;)
+用于几乎一致，方便发送多个域名时
+</code></pre>
+<h3 id="Axios拦截器"><a href="#Axios拦截器" class="headerlink" title="Axios拦截器"></a>Axios拦截器</h3><p>1、请求拦截器后进先执行，响应拦截器先进先执行</p>
+<h3 id="发送请求、取消请求"><a href="#发送请求、取消请求" class="headerlink" title="发送请求、取消请求"></a>发送请求、取消请求</h3><pre><code> let cancel = null   //定义全局变量
+    const btns = document.querySelectorAll(&#39;button&#39;)
+    btns[0].onclick = function () &#123;
+        if(cancel !== null)&#123;cancel()&#125;//检测上次请求是否完成
+        axios(&#123;
+            method:&#39;get&#39;,
+            url:&#39;http://localhost:3000/posts&#39;,
+            //添加配置对象属性
+            cancelToken:new axios.CancelToken(function(c)&#123;
+                //将c的值赋值给cancel
+                cancel = c
+            &#125;)
+        &#125;).then(response=&gt;&#123;
+            console.log(response);
+            cancel = null //初始化cancle值
+        &#125;)
+    &#125;
+</code></pre>
 
                 
             </div>
@@ -561,7 +564,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/08/20/Ajax/">http://example.com/2021/08/20/Ajax/</a>
+                    <a href="http://example.com/2021/08/20/axios/">http://example.com/2021/08/20/axios/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -766,9 +769,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/08/20/axios/">
                     <div class="card-image">
@@ -786,9 +790,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -797,6 +801,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -807,7 +812,7 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/20/Promise/">
+                <a href="/2021/08/20/Ajax/">
                     <div class="card-image">
                         
                         
