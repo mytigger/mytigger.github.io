@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, TiggerBlog">
+    <meta name="keywords" content="TiggerBlog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | TiggerBlog</title>
+    <title>TiggerBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -443,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-11
+                    2021-08-20
                 </div>
                 
 
@@ -464,19 +464,39 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p>1、从语法上看：<code>Promise</code>是一个构造函数 (自己身上有<code>all</code>、<code>reject</code>、<code>resolve</code>这几个方法，原型上有<code>then</code>、<code>catch</code>等方法)<br>2、从功能上看：<code>promise</code>对象用来封装一个异步操作并可以获取其成功/失败的结果值</p>
+<p>阮一峰的解释：<br>所谓<code>Promise</code>，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果<br>从语法上说，<code>Promise</code> 是一个对象，从它可以获取异步操作的消息<br><code>Promise</code> 提供统一的 API，各种异步操作都可以用同样的方法进行处理</p>
+<h3 id="Promise状态"><a href="#Promise状态" class="headerlink" title="Promise状态"></a>Promise状态</h3><p>实例对象<code>promise</code>中的一个n内置属性 <code>PromiseState</code></p>
+<p><code>pending</code>    未决定 </p>
+<p><code>resolved</code> / <code>fullfilled</code>    成功  resolve</p>
+<p><code>rejected</code>    失败    throw、reject </p>
+<p>1、<code>pending</code> 变为 <code>resolved</code>/<code>fullfilled</code></p>
+<p>2、<code>pending</code> 变为 <code>rejected</code></p>
+<p>注意：一个<code>promise</code>对象只能改变一次状态，而且只有两种结果<code> resolved</code> 或者 <code>rejected</code>，所以无论成功还是失败只有一个结果数据，成功一般为<code>value</code>，失败为<code>reason</code></p>
+<p><strong>改变Promise状态和指定回调函数执行顺序（then方法）</strong></p>
+<p>1）当执行器函数是同步任务，直接调用resolve/reject的时候先改变状态，再执行回调。或者then方式的定时器时间更长的时候，也是先改变状态</p>
+<p>2）当执行器函数是异步任务，then方法会先执行，再改变状态（ajax、数据库）</p>
+<h3 id="Promise对象的值"><a href="#Promise对象的值" class="headerlink" title="Promise对象的值"></a>Promise对象的值</h3><p>实例对象promise的另一个值 <code>PromiseResult</code><br>保存着对象 成功/失败 的值（<code>value</code>/<code>reason</code>）</p>
+<p><code>resolve</code>/<code>reject</code>可以修改值</p>
+<h3 id="Promise方法"><a href="#Promise方法" class="headerlink" title="Promise方法"></a>Promise方法</h3><p>resolve()/then()：由参数的结果决定resolve的结果。如果参数非Promise类型对象，返回的结果为成功Promise。</p>
+<p>reject()：无论传入什么参数，执行结果都为reject</p>
+<p>all():返回一个Promise，全部成功才成功（返回一个数组），一个失败便失败</p>
+<p>race():第一个完成的Promise的结果状态就是race返回状态</p>
+<h3 id="常用见问题"><a href="#常用见问题" class="headerlink" title="常用见问题"></a>常用见问题</h3><p>1、Promise异常穿透</p>
+<p>当使用Promise的then链式调用的时候，可以再最后指定失败的回调。前面任何操出了异常，都会传导最后失败的回调中处理<br>2、中断Promise链</p>
+<p>只有一种方式，返回一个padding状态的Promise (return new Promise()=&gt;{})</p>
+<h3 id="同步回调"><a href="#同步回调" class="headerlink" title="同步回调"></a>同步回调</h3><p>立即执行，完全执行完了才结束，不会放入回调队列中</p>
+<h3 id="异步回调"><a href="#异步回调" class="headerlink" title="异步回调"></a>异步回调</h3><p>不会立即执行，会放入回调队列中将来执行</p>
+<p>定时器回调 / ajax回调 / Promise成功或失败的回调</p>
+<h2 id="JS中的异常error处理"><a href="#JS中的异常error处理" class="headerlink" title="JS中的异常error处理"></a>JS中的异常error处理</h2><h3 id="1-错误的类型"><a href="#1-错误的类型" class="headerlink" title="1. 错误的类型"></a>1. 错误的类型</h3><p><code>Error</code>：所有错误的父类型</p>
+<p><code>ReferenceError</code>：引用的变量不存在</p>
+<p><code>TypeError</code>：数据类型不正确</p>
+<p><code>RangeError</code>：数据值不在其所允许的范围内</p>
+<p><code>SyntaxError</code>：语法错误</p>
+<h3 id="2-错误处理（捕获与抛出）"><a href="#2-错误处理（捕获与抛出）" class="headerlink" title="2. 错误处理（捕获与抛出）"></a>2. 错误处理（捕获与抛出）</h3><p>抛出错误：<code>throw error</code></p>
+<p>捕获错误：<code>try ... catch</code></p>
+<h3 id="3-错误对象"><a href="#3-错误对象" class="headerlink" title="3. 错误对象"></a>3. 错误对象</h3><p>massage 属性：错误相关信息</p>
+<p>stack 属性：函数调用栈记录信息</p>
 
                 
             </div>
@@ -503,7 +523,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/08/11/hello-world/">http://example.com/2021/08/11/hello-world/</a>
+                    <a href="http://example.com/2021/08/20/Promise/">http://example.com/2021/08/20/Promise/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -712,7 +732,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/08/11/JS%E5%9F%BA%E7%A1%80/">
+                <a href="/2021/08/20/Ajax/">
                     <div class="card-image">
                         
                         
@@ -729,7 +749,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-11
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-20
                         </span>
                         <span class="publish-author">
                             
@@ -746,16 +766,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/11/hello-world/">
+                <a href="/2021/08/11/JS%E5%9F%BA%E7%A1%80/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -776,7 +796,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
