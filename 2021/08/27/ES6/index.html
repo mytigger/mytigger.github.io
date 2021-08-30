@@ -443,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-20
+                    2021-08-27
                 </div>
                 
 
@@ -464,39 +464,174 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p>1、从语法上看：<code>Promise</code>是一个构造函数 (自己身上有<code>all</code>、<code>reject</code>、<code>resolve</code>这几个方法，原型上有<code>then</code>、<code>catch</code>等方法)<br>2、从功能上看：<code>promise</code>对象用来封装一个异步操作并可以获取其成功/失败的结果值</p>
-<p>阮一峰的解释：<br>所谓<code>Promise</code>，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果<br>从语法上说，<code>Promise</code> 是一个对象，从它可以获取异步操作的消息<br><code>Promise</code> 提供统一的 API，各种异步操作都可以用同样的方法进行处理</p>
-<h3 id="Promise状态"><a href="#Promise状态" class="headerlink" title="Promise状态"></a>Promise状态</h3><p>实例对象<code>promise</code>中的一个n内置属性 <code>PromiseState</code></p>
-<p><code>pending</code>    未决定 </p>
-<p><code>resolved</code> / <code>fullfilled</code>    成功  resolve</p>
-<p><code>rejected</code>    失败    throw、reject </p>
-<p>1、<code>pending</code> 变为 <code>resolved</code>/<code>fullfilled</code></p>
-<p>2、<code>pending</code> 变为 <code>rejected</code></p>
-<p>注意：一个<code>promise</code>对象只能改变一次状态，而且只有两种结果<code> resolved</code> 或者 <code>rejected</code>，所以无论成功还是失败只有一个结果数据，成功一般为<code>value</code>，失败为<code>reason</code></p>
-<p><strong>改变Promise状态和指定回调函数执行顺序（then方法）</strong></p>
-<p>1）当执行器函数是同步任务，直接调用resolve/reject的时候先改变状态，再执行回调。或者then方式的定时器时间更长的时候，也是先改变状态</p>
-<p>2）当执行器函数是异步任务，then方法会先执行，再改变状态（ajax、数据库）</p>
-<h3 id="Promise对象的值"><a href="#Promise对象的值" class="headerlink" title="Promise对象的值"></a>Promise对象的值</h3><p>实例对象promise的另一个值 <code>PromiseResult</code><br>保存着对象 成功/失败 的值（<code>value</code>/<code>reason</code>）</p>
-<p><code>resolve</code>/<code>reject</code>可以修改值</p>
-<h3 id="Promise方法"><a href="#Promise方法" class="headerlink" title="Promise方法"></a>Promise方法</h3><p>resolve()/then()：由参数的结果决定resolve的结果。如果参数非Promise类型对象，返回的结果为成功Promise。</p>
-<p>reject()：无论传入什么参数，执行结果都为reject</p>
-<p>all():返回一个Promise，全部成功才成功（返回一个数组），一个失败便失败</p>
-<p>race():第一个完成的Promise的结果状态就是race返回状态</p>
-<h3 id="常用见问题"><a href="#常用见问题" class="headerlink" title="常用见问题"></a>常用见问题</h3><p>1、Promise异常穿透</p>
-<p>当使用Promise的then链式调用的时候，可以再最后指定失败的回调。前面任何操出了异常，都会传导最后失败的回调中处理<br>2、中断Promise链</p>
-<p>只有一种方式，返回一个padding状态的Promise (return new Promise()=&gt;{})</p>
-<h3 id="同步回调"><a href="#同步回调" class="headerlink" title="同步回调"></a>同步回调</h3><p>立即执行，完全执行完了才结束，不会放入回调队列中</p>
-<h3 id="异步回调"><a href="#异步回调" class="headerlink" title="异步回调"></a>异步回调</h3><p>不会立即执行，会放入回调队列中将来执行</p>
-<p>定时器回调 / ajax回调 / Promise成功或失败的回调</p>
-<h2 id="JS中的异常error处理"><a href="#JS中的异常error处理" class="headerlink" title="JS中的异常error处理"></a>JS中的异常error处理</h2><h3 id="1-错误的类型"><a href="#1-错误的类型" class="headerlink" title="1. 错误的类型"></a>1. 错误的类型</h3><p><code>Error</code>：所有错误的父类型</p>
-<p><code>ReferenceError</code>：引用的变量不存在</p>
-<p><code>TypeError</code>：数据类型不正确</p>
-<p><code>RangeError</code>：数据值不在其所允许的范围内</p>
-<p><code>SyntaxError</code>：语法错误</p>
-<h3 id="2-错误处理（捕获与抛出）"><a href="#2-错误处理（捕获与抛出）" class="headerlink" title="2. 错误处理（捕获与抛出）"></a>2. 错误处理（捕获与抛出）</h3><p>抛出错误：<code>throw error</code></p>
-<p>捕获错误：<code>try ... catch</code></p>
-<h3 id="3-错误对象"><a href="#3-错误对象" class="headerlink" title="3. 错误对象"></a>3. 错误对象</h3><p>massage 属性：错误相关信息</p>
-<p>stack 属性：函数调用栈记录信息</p>
+                <h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>1、变量不能重复声明</p>
+<p>2、let有块级作用域（不仅仅针对花括号，if（）里面）</p>
+<p>3、不存在变量提前</p>
+<p>4、不影响作用域链</p>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>声明常量</p>
+<p>1、一定要赋初始值</p>
+<p>2、一般常量使用大写（潜规则）</p>
+<p>3、常量的值不能修改</p>
+<p>4、也具有块级作用域</p>
+<p>5、对于数组和对象的元素修改，不算作对常量的修改（常量地址没有发生变化）</p>
+<h3 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h3><p>ES6 允许按照一定模式从数组和对象中提取值，对变量进行赋值，这被称为解构赋值。</p>
+<p>1、数组的解构：</p>
+<pre><code>const F4 = [&#39;小沈阳&#39;，&#39;刘能&#39;,&#39;赵四&#39;,&#39;宋小宝&#39;]
+let [xiao,liu,zhao,song] = F4; 
+</code></pre>
+<p>2、对象的解构</p>
+<pre><code>const zhao = &#123;
+    name : &#39;赵本山&#39;，
+    age: &#39;不详&#39;,
+    xiaopin: function()&#123;
+        console.log(&quot;我可以演小品&quot;)
+    &#125;
+&#125;
+let &#123;name,age,xiaopin&#125; = zhao;
+</code></pre>
+<h3 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h3><p>1、内容中可以直接出现换行符，不需要再标签中单引号再用+拼接</p>
+<p>2、变量拼接 （用${}后面加上要拼接的内容）</p>
+<h3 id="对象的简化写法"><a href="#对象的简化写法" class="headerlink" title="对象的简化写法"></a>对象的简化写法</h3><p>ES6允许在大括号里面，直接写入变量和函数，作为对象的属性和方法,这样的书写更加简洁</p>
+<pre><code>let name = &#39;aaa&#39;;
+let change = function()&#123;
+    console.log(&#39;aaa&#39;);
+&#125;
+
+const school = &#123;
+    name,
+    change,
+    improve()&#123;
+        consolg.log(&#39;bbb&#39;);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>ES6允许使用箭头（=&gt;）定义函数</p>
+<p>1、this是静态的，this始终指向函数声明时所在作用域下的this的值（无法使用call改变指向）</p>
+<p>2、不能作为构造实例化对象<br>3、不能使用arguments变量<br>4、箭头函数简写</p>
+<p>4.1省略小括号，当形参有且只有一个的时候</p>
+<pre><code>let add = n =&gt; &#123;
+    return n + 1;
+&#125;
+</code></pre>
+<p>4.2省略花括号，当代码体只有一条语句的时候，此时return也必须省略</p>
+<pre><code>let add = n =&gt; n+1;
+</code></pre>
+<p>应用场景：箭头函数适合用于this无法的回调，定时器，数组方法回调</p>
+<p>不适用于this有关的回调， 事件的回调，对象的方法</p>
+<h3 id="函数参数默认值"><a href="#函数参数默认值" class="headerlink" title="函数参数默认值"></a>函数参数默认值</h3><p>ES6允许给函数参数赋值初始值</p>
+<p>1、可以给函数形参赋初始值，一般位置要靠后（因为传参是从前面开始）</p>
+<pre><code>function add(a,b,c=12)&#123;
+    return a+b+c; 
+&#125;
+let result = add (1,2);
+console.log(result) // 15
+
+2、与解构赋值结合（并且可以给初始值）
+
+function A(&#123;host=&#39;127.0.0.1&#39;,username,password,port&#125;)&#123;
+    console.log(host+username+password+port)
+&#125;
+A(&#123;
+    username:&#39;ran&#39;,
+    password:&#39;123456&#39;,
+    port:3306
+&#125;)
+</code></pre>
+<h3 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h3><p>用于获取函数的实参，用来代替arguments</p>
+<p>1、arguments是一个对象，args是一个数组（可以使用filter、some、map等方法）</p>
+<p>2、必需要放到参数的最后</p>
+<pre><code>function date(...args)&#123;
+    console.log(args);
+&#125;
+date(&#39;aaa&#39;,&#39;bbb&#39;,&#39;ccc&#39;)；
+</code></pre>
+<h3 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h3><p>扩展运算符是能将数组转换为逗号分隔的参数序列（…arry）</p>
+<p>1、数组的合并（ES5用concat方法）</p>
+<p>2、数组的克隆</p>
+<p>3、将伪数组转换为真正的数组（标签集合数组）</p>
+<h3 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h3><pre><code>let fn = Symbol()
+
+let fn = Symbol.for()
+</code></pre>
+<p>ES6引入了一种新的原始数据类型 Symbol，表示独一无二的值。它是JavaScript语言的第七种数据类型，是一种类似于字符串的数据类型。</p>
+<p>Symbol特点：</p>
+<p>1、Symbol的值是独一无二的，用来解决命名冲突的问题<br>2、Symbol值不能与其他数据进行运算（包括于自身相加等运算）<br>3、Symbol定义的对象属性不能使用for…in循环遍历，但是可以使用Reflect.ownKeys来获取对象的所有键名<br>应用场景：</p>
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>迭代器(lterator)是一种接口（对象的属性），为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署lterator接口，就可以完成遍历操作。</p>
+<p>原理：1、创建一个指针对象，指向数据结构的起始位置</p>
+<p>​            2、第一次调用==next（）==方法，指针自动指向数据结构第一个成员</p>
+<p>​            3、接下来不断调用next（），指针一直往后移动，直到指向最后一个成员</p>
+<p>​            4、每次调用next（）返回一个包含value和done属性的对象</p>
+<p>  for in保存的是键名，for of保存的是键值</p>
+<h3 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h3><p>生成器函数是ES6提供的一种异步编程解决方案，语法行为与传统函数完全不同，是一种特殊的函数</p>
+<p>特性</p>
+<pre><code>function * gen ()&#123;    //函数名和function中间有一个 * 
+    yield &#39;耳朵&#39;；     //yield是函数代码的分隔符
+    yield &#39;尾巴&#39;；
+    yield &#39;真奇怪&#39;；
+&#125;
+let iterator = gen();
+console.log(iteretor.next()); 
+//&#123;value:&#39;耳朵&#39;,done:false&#125; next（）执行第一段，并且返回yield后面的值
+console.log(iteretor.next()); //&#123;value:&#39;尾巴&#39;,done:false&#125;
+console.log(iteretor.next()); //&#123;value:&#39;真奇怪&#39;,done:false&#125;
+</code></pre>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>Promise是ES6引入的异步编程的新解决方案。语法上 Promise是一个构造函数，用来封装异步操作并可以获取其成功或失败的结果。</p>
+<p>Promise对象<br>//1.当回调后，返回的是非Promise类型的属性时，状态为fulfilled，then（）函数的返回值为对象的成功值，如reutnr 123，返回的Promise对象值为123，如果没有返回值，是undefined</p>
+<p>//2.当回调后，返回的是Promise类型的对象时，then（）函数的返回值为这个Promise对象的状态值</p>
+<p>//3.当回调后，如果抛出的异常，则then（）函数的返回值状态也是rejected</p>
+<pre><code>   let result = p.then(value =&gt; &#123;
+        console.log(value)
+        // return 123;
+        // return new Promise((resolve, reject) =&gt; &#123;
+        //     resolve(&#39;ok&#39;)
+        // &#125;)
+        throw 123
+    &#125;,reason =&gt; &#123;
+        console.log(reason)
+    &#125;)
+    console.log(result);
+</code></pre>
+<p>Promise.catch（）方法</p>
+<p>//catch（）函数只有一个回调函数，意味着如果Promise对象状态为失败就会调用catch（）方法并且调用回调函数</p>
+<h3 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h3><p>模块化是指将一个大的程序文件,拆分成许多小的文件，然后将小文件组合起来。</p>
+<p>模块化的好处：</p>
+<p>防止命名冲突<br>代码复用<br>高维护性<br>模块化规范产品</p>
+<p>ES6之前的模块化规范有：</p>
+<p>CommonJS ====&gt; NodeJS、Browserify<br>AMD ====&gt; requireJS<br>CMD ====&gt; seaJS</p>
+<h4 id="模块化语法"><a href="#模块化语法" class="headerlink" title="模块化语法"></a>模块化语法</h4><h5 id="export三种方法"><a href="#export三种方法" class="headerlink" title="export三种方法"></a>export三种方法</h5><p>1、分别导出</p>
+<pre><code>export let name = &#39;xx&#39;
+export function sayname(name)&#123;
+    console.log(name)
+&#125;
+</code></pre>
+<p>2、统一导出</p>
+<pre><code>export&#123;name,sayname&#125;
+</code></pre>
+<p>3、默认导出</p>
+<p>import 用于输入其他模块的功能，导入</p>
+<pre><code>export default&#123;
+    name = &#39;xx&#39;,
+    function sayname(name)&#123;
+        console.log(name)
+    &#125;
+&#125;
+</code></pre>
+<h5 id="import"><a href="#import" class="headerlink" title="import"></a>import</h5><p>1、通用导入</p>
+<pre><code>import * as index from &#39;src/js/index.js&#39;
+</code></pre>
+<p>2、结构赋值形式</p>
+<pre><code>import&#123;name,say&#125; from &#39;src/js.index.js&#39; 
+import&#123;name as name1,say1&#125; from &#39;src/js.index1.js&#39; 
+注意：如果引入两个文件，有相同的变量，需要设置变量别名
+</code></pre>
+<p>3、默认导出</p>
+<pre><code>import &#123;default as name3&#125; from &#39;src/js.index.js&#39; 
+注意：不能直接使用default，必须要使用别名
+import m3 from &#39;src/js.index.js&#39; //简便形式，只有默认导出才能使用
+</code></pre>
+<p>如果会再一个入口文件导入多个，然后再引入这个入口文件(设置module)</p>
+<pre><code>&lt;script src=&quot;./inde.js&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+</code></pre>
 
                 
             </div>
@@ -523,7 +658,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/08/20/Promise/">http://example.com/2021/08/20/Promise/</a>
+                    <a href="http://example.com/2021/08/27/ES6/">http://example.com/2021/08/27/ES6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -602,48 +737,12 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
-            <div class="card">
-                <a href="/2021/08/20/Ajax/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
-                        
-                        <span class="card-title"></span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-20
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Tigger
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/08/11/JS%E5%9F%BA%E7%A1%80/">
+                <a href="/2021/08/27/ES6/">
                     <div class="card-image">
                         
                         
@@ -660,7 +759,45 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Tigger
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/08/20/axios/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-20
                             </span>
                         <span class="publish-author">
                             
